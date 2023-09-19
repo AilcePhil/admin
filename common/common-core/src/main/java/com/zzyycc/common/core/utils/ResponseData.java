@@ -1,6 +1,6 @@
 package com.zzyycc.common.core.utils;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 
@@ -14,13 +14,14 @@ import java.io.Serializable;
 public class ResponseData<T> implements Serializable {
     private static final long serialVersionUID = -4397576456787945649L;
 
-    @ApiModelProperty(value = "数据")
+
+    @Schema(name = "数据")
     private T rows;
 
-    @ApiModelProperty(value = "返回信息")
+    @Schema(name = "返回信息")
     private String message;
 
-    @ApiModelProperty(value = "是否成功")
+    @Schema(name = "是否成功")
     private Boolean success = true;
 
 

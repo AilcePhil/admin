@@ -1,7 +1,4 @@
 spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   application:
     name: management
   profiles:
@@ -24,7 +21,11 @@ spring:
         username: nacos
         password: 199682
 
-swagger:
-  enabled: true
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    persist-authorization: true
+
 
 
