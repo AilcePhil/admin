@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>common</artifactId>
+        <groupId>com.zzyycc</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>common-swagger</artifactId>
+    <packaging>jar</packaging>
+    <name>common-swagger</name>
+    <description>common-swagger</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <swagger.fox.version>3.0.0</swagger.fox.version>
+        <knife4j.version>3.0.2</knife4j.version>
+    </properties>
+    <dependencies>
+        <!--接口文档-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-ui</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
