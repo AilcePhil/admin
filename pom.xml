@@ -86,16 +86,7 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-core</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-        <!-- 数据库驱动-->
-<!--        <dependency>-->
-<!--            <groupId>mysql</groupId>-->
-<!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--        </dependency>-->
+
 
 
     </dependencies>
