@@ -128,7 +128,6 @@ public class GeneratorServiceImpl implements GeneratorService {
                         .typeConvert(new MySqlTypeConvert()).keyWordsHandler(new MySqlKeyWordsHandler()))
                 .templateEngine( new FreemarkerTemplateEngine())
                 .globalConfig(builder -> builder
-                        .fileOverride()
                         .disableOpenDir()
                         .outputDir(getSystemPath())
                         .author(StringUtils.isNotEmpty(dto.getAuthor()) ? dto.getAuthor() : "zhuyuchao")
@@ -166,6 +165,7 @@ public class GeneratorServiceImpl implements GeneratorService {
                         .enableRemoveIsPrefix()
                         .enableLombok()
                         .enableTableFieldAnnotation()
+                        .enableFileOverride()
                         //.enableTableFieldAnnotation()
                         .naming(NamingStrategy.underline_to_camel)
                         // controller配置
