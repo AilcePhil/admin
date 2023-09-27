@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
 import com.zzyycc.management.generator.dto.MgGeneratorCodeDTO;
 import com.zzyycc.management.generator.dto.MgTablesDTO;
@@ -125,6 +126,7 @@ public class GeneratorServiceImpl implements GeneratorService {
                         null == dto.getUsername() ? defaultUsername : dto.getUsername(),
                         null == dto.getPassword() ? defaultPassword : dto.getPassword())
                         .typeConvert(new MySqlTypeConvert()).keyWordsHandler(new MySqlKeyWordsHandler()))
+                .templateEngine( new FreemarkerTemplateEngine())
                 .globalConfig(builder -> builder
                         .fileOverride()
                         .disableOpenDir()
@@ -146,12 +148,12 @@ public class GeneratorServiceImpl implements GeneratorService {
 //                .templateConfig(builder -> builder
 //                        // 禁用所用模板，启用自己的配置模板
 //                        .disable()
-//                        .entity("/templates/myEntity.java")
-//                        .service("/templates/myService.java")
-//                        .serviceImpl("/templates/myServiceImpl.java")
-//                        .mapper("/templates/myMapper.java")
-//                        .xml("/templates/myMapper.xml")
-//                        .controller("/templates/myController.java")
+//                        .entity("/templates/entity.java")
+//                        .service("/templates/service.java")
+//                        .serviceImpl("/templates/serviceImpl.java")
+//                        .mapper("/templates/mapper.java")
+//                        .xml("/templates/xml.java")
+//                        .controller("/templates/controller.java")
 //                        .build())
                 .strategyConfig(builder -> builder
                         .enableSkipView()
