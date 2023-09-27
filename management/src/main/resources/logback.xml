@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+    <springProperty scope="context" name="logPath" source="logging.path" defaultValue="log"/>
+
     <!-- 彩色日志格式 -->
     <property name="CONSOLE_LOG_PATTERN"
               value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
@@ -21,7 +23,7 @@
 
     <!-- Log file debug output -->
     <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.path}/debug.log</file>
+        <file>${logPath}/debug.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${log.path}/%d{yyyy-MM, aux}/debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>50MB</maxFileSize>
@@ -34,7 +36,7 @@
 
     <!-- Log file error output -->
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>d:/error.log</file>
+        <file>${logPath}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${log.path}/%d{yyyy-MM}/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>50MB</maxFileSize>
