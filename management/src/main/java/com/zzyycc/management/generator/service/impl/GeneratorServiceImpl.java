@@ -130,7 +130,7 @@ public class GeneratorServiceImpl implements GeneratorService {
                 .globalConfig(builder -> builder
                         .disableOpenDir()
                         .outputDir(getSystemPath())
-                        .author(StringUtils.isNotEmpty(dto.getAuthor()) ? dto.getAuthor() : "zhuyuechao")
+                        .author(StringUtils.isNotEmpty(dto.getAuthor()) ? dto.getAuthor() : "zhuyuchao")
                         .enableSpringdoc()
                         .dateType(DateType.ONLY_DATE)
                         .build())
