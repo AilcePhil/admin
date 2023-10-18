@@ -126,7 +126,6 @@ public class GeneratorServiceImpl implements GeneratorService {
                         null == dto.getUsername() ? defaultUsername : dto.getUsername(),
                         null == dto.getPassword() ? defaultPassword : dto.getPassword())
                         .typeConvert(new MySqlTypeConvert()).keyWordsHandler(new MySqlKeyWordsHandler()))
-                .templateEngine( new FreemarkerTemplateEngine())
                 .globalConfig(builder -> builder
                         .disableOpenDir()
                         .outputDir(getSystemPath())
