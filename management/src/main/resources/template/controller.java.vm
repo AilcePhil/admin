@@ -11,9 +11,7 @@ import ${superControllerClassPackage};
 #end
 
 /**
- * <p>
- * $!{table.comment} 前端控制器
- * </p>
+ * $!{table.comment} Controller
  *
  * @author ${author}
  * @since ${date}
@@ -23,7 +21,8 @@ import ${superControllerClassPackage};
 #else
 @Controller
 #end
-@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+@RequestMapping("/api#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+@Tag(name = "${entity}", description = "$!{table.comment}"")
 #if(${kotlin})
 class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
 

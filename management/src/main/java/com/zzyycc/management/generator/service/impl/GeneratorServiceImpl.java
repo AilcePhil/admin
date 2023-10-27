@@ -46,6 +46,13 @@ public class GeneratorServiceImpl implements GeneratorService {
     @Value("${spring.datasource.url}")
     private String defaultUrl;
 
+
+    private static String USERNAME = "root";
+
+    private static String PASSWORD = "199682";
+
+    private static String URL = "jdbc:mysql://101.35.52.122:3306/zzyycc?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&remarks=true&useInformationSchema=true";
+
     private final StringRedisTemplate stringRedisTemplate;
 
     private final JdbcTemplate jdbcTemplate;
@@ -119,7 +126,7 @@ public class GeneratorServiceImpl implements GeneratorService {
     }
 
     private FastAutoGenerator fastAutoGenerator(MgGeneratorCodeDTO dto) {
-        deleteFile(new File(getSystemPath()));
+        //deleteFile(new File(getSystemPath()));
         return FastAutoGenerator.create(
                 new DataSourceConfig.Builder(
                         null == dto.getUrl() ? defaultUrl : dto.getUrl(),
@@ -129,12 +136,12 @@ public class GeneratorServiceImpl implements GeneratorService {
                 .globalConfig(builder -> builder
                         .disableOpenDir()
                         .outputDir(getSystemPath())
-                        .author(StringUtils.isNotEmpty(dto.getAuthor()) ? dto.getAuthor() : "zhuyuchao")
+                        .author(StringUtils.isNotEmpty(dto.getAuthor()) ? dto.getAuthor() : "zhuyuechao")
                         .enableSpringdoc()
-                        .dateType(DateType.ONLY_DATE)
+                        .dateType(DateType.ONLY_DATE).disableServiceInterface()
                         .build())
                 .packageConfig(builder -> builder
-                        .parent(StringUtils.isNotEmpty(dto.getParent()) ? dto.getParent() : "com.management")
+                        .parent(StringUtils.isNotEmpty(dto.getParent()) ? dto.getParent() : "com.zzyycc")
                         .moduleName(StringUtils.isNotEmpty(dto.getModuleName()) ? dto.getModuleName() : "")
                         .entity("entity")
                         .service("service")
@@ -143,16 +150,16 @@ public class GeneratorServiceImpl implements GeneratorService {
                         .xml("mapper.xml")
                         .controller("controller")
                         .build())
-//                .templateConfig(builder -> builder
-//                        // 禁用所用模板，启用自己的配置模板
-//                        .disable()
-//                        .entity("/templates/entity.java")
-//                        .service("/templates/service.java")
-//                        .serviceImpl("/templates/serviceImpl.java")
-//                        .mapper("/templates/mapper.java")
-//                        .xml("/templates/xml.java")
-//                        .controller("/templates/controller.java")
-//                        .build())
+                .templateConfig(builder -> builder
+                        // 禁用所用模板，启用自己的配置模板
+                        .disable()
+                        .entity("/templates/entity.java")
+                        .service("/templates/service.java")
+                        .serviceImpl("/templates/serviceImpl.java")
+                        .mapper("/templates/mapper.java")
+                        .xml("/templates/mapper.xml.java")
+                        .controller("/templates/controller.java")
+                        .build())
                 .strategyConfig(builder -> builder
                         .enableSkipView()
                         .addInclude(dto.getTableNameList())
@@ -168,14 +175,14 @@ public class GeneratorServiceImpl implements GeneratorService {
                         //.enableTableFieldAnnotation()
                         .naming(NamingStrategy.underline_to_camel)
                         // controller配置
-                        .controllerBuilder().enableRestStyle()
+                        .controllerBuilder().enableRestStyle().enableFileOverride()
                         // service配置
                         .serviceBuilder().superServiceClass(IService.class).superServiceImplClass(ServiceImpl.class)
-                        .convertServiceFileName(entityName -> entityName + ConstVal.SERVICE)
+                        .convertServiceFileName(entityName -> entityName + ConstVal.SERVICE).enableFileOverride()
                         // mapper配置
                         .mapperBuilder().superClass(BaseMapper.class).enableMapperAnnotation().enableBaseResultMap()
-                        .enableBaseColumnList()
-                .build());
+                        .enableBaseColumnList().enableFileOverride()
+                        .build());
     }
 
     private void deleteFile(File file) {
